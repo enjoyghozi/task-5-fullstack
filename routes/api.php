@@ -23,10 +23,9 @@ use App\Http\Controllers\Api\PostController;
 Route::post('login', [UserController::class, 'login']);
 Route::post('register', [UserController::class, 'register']);
 
-Route::group(['middleware' => 'auth:api'], function(){
+Route::middleware('auth:api')->group(function () {
     Route::post('details', [UserController::class, 'details']);
     Route::post('logout', [UserController::class, 'logout']);
+    Route::apiResource('posts', PostController::class);
 
 });
-
-Route::apiResource('/posts', PostController::class);
