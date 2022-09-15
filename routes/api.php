@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,7 @@ Route::post('register', [UserController::class, 'register']);
 Route::group(['middleware' => 'auth:api'], function(){
     Route::post('details', [UserController::class, 'details']);
     Route::post('logout', [UserController::class, 'logout']);
+
 });
+
+Route::apiResource('/posts', PostController::class);
